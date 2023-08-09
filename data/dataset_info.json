@@ -187,5 +187,62 @@
       "response": "output",
       "history": "history"
     }
+  },
+     "cyjm_instruction": {
+    "file_name": "cyjm_dataset/cyjm_instruction.json",
+    "file_sha1": "f072aca034c00c2a0b1c3c63735d9164d36a29db",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    }
+  },
+  "cyjm_drama_train": {
+    "file_name": "cyjm_dataset/cyjm_drama_train.json",
+    "file_sha1": "119babb29b3932fc806c4df3d8878db495b6bbf7",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    }
+  },
+  "cyjm_drama_dev": {
+    "file_name": "cyjm_dataset/cyjm_drama_validate.json",
+    "file_sha1": "215fcc6d933104120394852a6d32be6607b12e97"
+  },
+    "cyjm_drama_ctx": {
+    "file_name": "cyjm_dataset/cyjm_drama_context_train.json",
+    "file_sha1": "587bcdb7f30b2e70e60c54a3ee7718708c186fd2",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    }
+  },
+  "cyjm_drama_ctx_dev": {
+    "file_name": "cyjm_dataset/cyjm_drama_context_validate.json",
+    "file_sha1": "00514cf8b9e1295d562a7514470c0b7909d65e74"
+  },
+  "cyjm_drama_part_train": {
+    "file_name": "cyjm_dataset/cyjm_drama_part_train.json",
+    "file_sha1": "f53c3ade60a684020d9e1dfc5ce1149b25816f97"
+  },
+  "cyjm_drama_part_dev": {
+    "file_name": "cyjm_dataset/cyjm_drama_part_validate.json",
+    "file_sha1": "b975cbab1bc6950aabacf3a64db0398724ee06b6"
+  },
+    "cyjm_demo": {
+    "file_name": "cyjm_drama_train.json",
+    "file_sha1": "139ce821e9a6b0c33b30852504d6b136f0bfeaa8",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    }
   }
+
 }
