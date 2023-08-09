@@ -12,6 +12,16 @@
 
 \[ [English](README.md) | 中文 \]
 
+如果有任何的疑问，可以阅读我们的[Wiki📄](https://github.com/hiyouga/ChatGLM-Efficient-Tuning/wiki) 文档或者提出issue
+
+## 相关项目
+
+### [LLaMA-Efficient-Tuning](https://github.com/hiyouga/LLaMA-Efficient-Tuning)
+基于PEFT的LLaMA系列模型高效微调
+
+### [FastEdit](https://github.com/hiyouga/FastEdit)
+10秒编辑你的大语言模型
+
 ## 更新日志
 
 [23/07/15] 我们开发了支持训练和测试的浏览器一键微调界面。请尝试使用 `train_web.py` 在您的浏览器中微调 ChatGLM-6B 模型。感谢 [@KanadeSiina](https://github.com/KanadeSiina) 和 [@codemayq](https://github.com/codemayq) 在该功能开发中付出的努力。
@@ -119,6 +129,7 @@ huggingface-cli login
 ### 环境搭建（可跳过）
 
 ```bash
+git lfs install
 git clone https://github.com/hiyouga/ChatGLM-Efficient-Tuning.git
 conda create -n chatglm_etuning python=3.10
 conda activate chatglm_etuning
@@ -135,8 +146,10 @@ pip install https://github.com/jllllll/bitsandbytes-windows-webui/releases/downl
 ### 浏览器一键微调/测试
 
 ```bash
-python src/train_web.py
+CUDA_VISIBLE_DEVICES=0 python src/train_web.py
 ```
+
+目前网页 UI 仅支持**单卡训练**。
 
 ### 单 GPU 微调训练
 
@@ -155,6 +168,7 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --save_steps 1000 \
     --learning_rate 5e-5 \
     --num_train_epochs 3.0 \
+    --plot_loss \
     --fp16
 ```
 
@@ -176,6 +190,8 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --do_train \
     --dataset comparison_gpt4_zh \
     --finetuning_type lora \
+    --resume_lora_training False \
+    --checkpoint_dir path_to_sft_checkpoint \
     --output_dir path_to_rm_checkpoint \
     --per_device_train_batch_size 4 \
     --gradient_accumulation_steps 4 \
@@ -184,6 +200,7 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --save_steps 1000 \
     --learning_rate 1e-5 \
     --num_train_epochs 1.0 \
+    --plot_loss \
     --fp16
 ```
 
@@ -196,6 +213,7 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --do_train \
     --dataset alpaca_gpt4_zh \
     --finetuning_type lora \
+    --resume_lora_training False \
     --checkpoint_dir path_to_sft_checkpoint \
     --reward_model path_to_rm_checkpoint \
     --output_dir path_to_ppo_checkpoint \
@@ -206,7 +224,7 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --save_steps 1000 \
     --learning_rate 1e-5 \
     --num_train_epochs 1.0 \
-    --fp16
+    --plot_loss
 ```
 
 ### 指标评估（BLEU分数和汉语ROUGE分数）

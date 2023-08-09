@@ -12,6 +12,17 @@ Fine-tuning 🤖[ChatGLM-6B](https://github.com/THUDM/ChatGLM-6B) model with �
 
 \[ English | [中文](README_zh.md) \]
 
+If you encounter any problems, you can refer to our [Wiki📄](https://github.com/hiyouga/ChatGLM-Efficient-Tuning/wiki) or feel free to raise an issue.
+
+## Our related projects.
+
+### [LLaMA-Efficient-Tuning](https://github.com/hiyouga/LLaMA-Efficient-Tuning)
+Fine-tuning LLaMA Based models with PEFT.
+
+### [FastEdit](https://github.com/hiyouga/FastEdit)
+Editing large language models within 10 seconds
+
+
 ## Changelog
 
 [23/07/15] Now we develop an all-in-one Web UI for training, evaluation and inference. Try `train_web.py` to fine-tune ChatGLM-6B model in your Web browser. Thank [@KanadeSiina](https://github.com/KanadeSiina) and [@codemayq](https://github.com/codemayq) for their efforts in the development.
@@ -113,6 +124,7 @@ Note: please update `data/dataset_info.json` to use your custom dataset. About t
 ### Dependence Installation (optional)
 
 ```bash
+git lfs install
 git clone https://github.com/hiyouga/ChatGLM-Efficient-Tuning.git
 conda create -n chatglm_etuning python=3.10
 conda activate chatglm_etuning
@@ -129,8 +141,10 @@ pip install https://github.com/jllllll/bitsandbytes-windows-webui/releases/downl
 ### All-in-one Web UI
 
 ```bash
-python src/train_web.py
+CUDA_VISIBLE_DEVICES=0 python src/train_web.py
 ```
+
+Currently the web UI only supports training on **a single GPU**.
 
 ### Fine-tuning with a Single GPU
 
@@ -149,6 +163,7 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --save_steps 1000 \
     --learning_rate 5e-5 \
     --num_train_epochs 3.0 \
+    --plot_loss \
     --fp16
 ```
 
@@ -170,6 +185,8 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --do_train \
     --dataset comparison_gpt4_en \
     --finetuning_type lora \
+    --resume_lora_training False \
+    --checkpoint_dir path_to_sft_checkpoint \
     --output_dir path_to_rm_checkpoint \
     --per_device_train_batch_size 4 \
     --gradient_accumulation_steps 4 \
@@ -178,6 +195,7 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --save_steps 1000 \
     --learning_rate 1e-5 \
     --num_train_epochs 1.0 \
+    --plot_loss \
     --fp16
 ```
 
@@ -201,7 +219,7 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --save_steps 1000 \
     --learning_rate 1e-5 \
     --num_train_epochs 1.0 \
-    --fp16
+    --plot_loss
 ```
 
 ### Evaluation (BLEU and ROUGE_CHINESE)
